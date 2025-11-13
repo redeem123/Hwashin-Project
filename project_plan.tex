@@ -1,0 +1,1524 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{tcolorbox}
+\usepackage{amsmath}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{HUST-HWASHIN AR Project Plan}
+\lhead{2025-2026}
+\cfoot{\thepage}
+
+\title{\textbf{Development of AR System Technology for\\Quality Information Display}\\
+\large Detailed Project Implementation Plan}
+\author{Hanoi University of Science and Technology\\Institute of Energy Technology\\
+\and
+Hwashin Co., Ltd}
+\date{Project Period: August 2025 - August 2026}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+\newpage
+
+\tableofcontents
+\newpage
+
+\section{Executive Summary}
+
+This document presents a comprehensive implementation plan for the development of an Augmented Reality (AR) system designed to enhance quality inspection processes for formed parts in manufacturing environments. The project is a collaboration between Hwashin Co., Ltd (Korea) and the Institute of Energy Technology at Hanoi University of Science and Technology (Vietnam).
+
+\subsection{Project Overview}
+\begin{itemize}
+    \item \textbf{Project Title:} Development of AR System Technology for Quality Information Display
+    \item \textbf{Total Budget:} \$20,000 USD
+    \item \textbf{Duration:} August 15, 2025 - August 31, 2026 (12.5 months)
+    \item \textbf{Primary Technology:} LiDAR-based AR on iOS devices (iPad/iPhone)
+    \item \textbf{Project Manager:} Professor Nguyen Duc Toan (IET)
+    \item \textbf{Responsible Manager:} Team Leader Yeo In-Joo (HWASHIN)
+\end{itemize}
+
+\subsection{Strategic Importance}
+Augmented Reality technology offers significant potential to improve the accuracy and efficiency of visual inspection for manufactured parts. This project addresses the critical need for real-time quality assessment by developing an innovative mobile application that leverages LiDAR scanning capabilities to recognize objects and overlay quality data directly onto physical parts.
+
+\newpage
+
+\section{Project Background and Motivation}
+
+\subsection{Industry Context}
+In modern manufacturing, particularly in the automotive and metal forming industries, quality inspection of formed parts is a critical yet time-consuming process. Traditional inspection methods involve:
+\begin{itemize}
+    \item Manual measurements with calipers and gauges
+    \item Time-intensive coordinate measuring machine (CMM) operations
+    \item Limited real-time feedback to production operators
+    \item Difficulty in visualizing dimensional deviations
+\end{itemize}
+
+\subsection{Technology Gap}
+Current inspection systems lack:
+\begin{itemize}
+    \item Mobile, on-site inspection capabilities
+    \item Intuitive visualization of quality deviations
+    \item Real-time comparison with design specifications
+    \item Integration of 3D scanning with quality data mapping
+\end{itemize}
+
+\subsection{Solution Approach}
+This project develops a mobile AR application that:
+\begin{enumerate}
+    \item Utilizes iPad/iPhone LiDAR scanners for 3D object recognition
+    \item Imports template databases containing design specifications
+    \item Compares scanned geometry with CAD data
+    \item Visualizes dimensional differences using color-coded heat maps
+    \item Provides immediate feedback to quality inspectors
+\end{enumerate}
+
+\newpage
+
+\section{Project Objectives}
+
+\subsection{Primary Objective}
+Develop a fully functional mobile AR application capable of recognizing manufactured parts using LiDAR technology and displaying quality information by comparing scanned objects with design templates.
+
+\subsection{Specific Technical Objectives}
+\begin{enumerate}
+    \item \textbf{Object Recognition:} Achieve $>90\%$ recognition accuracy for targeted objects/parts
+    \item \textbf{Data Import:} Successfully import and display 100\% of template databases
+    \item \textbf{Geometric Comparison:} Compare 100\% of scanned objects with imported design data
+    \item \textbf{Visualization:} Display dimensional differences as intuitive color-coded overlays
+    \item \textbf{Performance:} Ensure real-time processing suitable for shop floor use
+\end{enumerate}
+
+\subsection{Deliverable Objectives}
+\begin{itemize}
+    \item Complete and documented iOS mobile application
+    \item User manual and technical documentation
+    \item Training materials for end users
+    \item Progress and final technical reports
+    \item Tested and validated system with HWASHIN sample data
+\end{itemize}
+
+\newpage
+
+\section{Technical Requirements and Specifications}
+
+\subsection{Hardware Requirements}
+
+\subsubsection{Development Devices}
+\begin{itemize}
+    \item \textbf{Primary Platform:} iPad Pro with LiDAR scanner
+    \item \textbf{Secondary Platform:} iPhone Pro series with LiDAR capability
+    \item \textbf{Minimum iOS Version:} iOS 14.0 or higher
+    \item \textbf{Processing:} A12 Bionic chip or newer
+    \item \textbf{Storage:} Minimum 64GB for application and database storage
+\end{itemize}
+
+\subsubsection{LiDAR Scanner Specifications}
+\begin{itemize}
+    \item Range: Up to 5 meters
+    \item Point cloud density: Suitable for part-level detail
+    \item Frame rate: 30 Hz minimum
+    \item Depth precision: Millimeter-level accuracy
+\end{itemize}
+
+\subsection{Software Requirements}
+
+\subsubsection{Development Environment}
+\begin{itemize}
+    \item \textbf{IDE:} Xcode 12.0 or later
+    \item \textbf{Programming Language:} Swift 5.0+
+    \item \textbf{Frameworks:}
+    \begin{itemize}
+        \item ARKit 4.0+ (for AR functionality)
+        \item RealityKit (for 3D rendering)
+        \item SceneKit (for 3D scene management)
+        \item CoreML (for machine learning-based recognition)
+        \item Vision framework (for computer vision tasks)
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Core Functionalities}
+\begin{enumerate}
+    \item \textbf{3D Scanning Module}
+    \begin{itemize}
+        \item Real-time LiDAR point cloud capture
+        \item Mesh reconstruction from point cloud data
+        \item Object boundary detection and isolation
+    \end{itemize}
+
+    \item \textbf{Object Recognition Module}
+    \begin{itemize}
+        \item Feature extraction from scanned geometry
+        \item Template matching algorithm
+        \item Machine learning-based classification
+        \item Pose estimation and alignment
+    \end{itemize}
+
+    \item \textbf{Database Management Module}
+    \begin{itemize}
+        \item Import CAD models (STEP, STL, OBJ formats)
+        \item Store template geometries and metadata
+        \item Efficient retrieval and caching mechanisms
+        \item Support for multiple part variants
+    \end{itemize}
+
+    \item \textbf{Comparison and Analysis Module}
+    \begin{itemize}
+        \item Point-to-surface distance calculation
+        \item Dimensional deviation computation
+        \item Statistical analysis of quality metrics
+        \item Tolerance zone evaluation
+    \end{itemize}
+
+    \item \textbf{Visualization Module}
+    \begin{itemize}
+        \item Color-coded heat map generation
+        \item AR overlay rendering on physical object
+        \item Interactive inspection controls
+        \item Report generation with screenshots
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Performance Specifications}
+\begin{itemize}
+    \item \textbf{Recognition Time:} $<$ 3 seconds per object
+    \item \textbf{Comparison Processing:} $<$ 5 seconds for typical parts
+    \item \textbf{Frame Rate:} Maintain $>$ 30 FPS during AR visualization
+    \item \textbf{Accuracy:} Dimensional measurements within $\pm 0.5$ mm
+    \item \textbf{Recognition Success Rate:} $>$ 90\% for trained objects
+\end{itemize}
+
+\newpage
+
+\section{System Architecture}
+
+\subsection{Overall Architecture}
+The system follows a modular architecture with the following layers:
+
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=System Architecture Layers]
+\textbf{1. Presentation Layer} (User Interface)\\
+$\downarrow$\\
+\textbf{2. Application Layer} (Business Logic)\\
+$\downarrow$\\
+\textbf{3. Data Layer} (Database and File Management)\\
+$\downarrow$\\
+\textbf{4. Hardware Interface Layer} (LiDAR, Camera, Sensors)
+\end{tcolorbox}
+
+\subsection{Module Descriptions}
+
+\subsubsection{Presentation Layer}
+\begin{itemize}
+    \item \textbf{AR View Controller:} Main interface for scanning and visualization
+    \item \textbf{Database Browser:} Interface for selecting and managing templates
+    \item \textbf{Settings Panel:} Configuration options and calibration tools
+    \item \textbf{Report Viewer:} Display inspection results and history
+\end{itemize}
+
+\subsubsection{Application Layer}
+\begin{itemize}
+    \item \textbf{Scan Manager:} Controls LiDAR scanning process
+    \item \textbf{Recognition Engine:} Implements object identification algorithms
+    \item \textbf{Comparison Engine:} Performs geometric analysis
+    \item \textbf{Visualization Engine:} Generates AR overlays and heat maps
+\end{itemize}
+
+\subsubsection{Data Layer}
+\begin{itemize}
+    \item \textbf{Template Database:} Stores CAD models and specifications
+    \item \textbf{Scan Cache:} Temporary storage for captured point clouds
+    \item \textbf{Results Database:} Stores inspection history and results
+    \item \textbf{Configuration Manager:} Handles user preferences and settings
+\end{itemize}
+
+\subsubsection{Hardware Interface Layer}
+\begin{itemize}
+    \item \textbf{ARKit Interface:} Access to LiDAR and motion tracking
+    \item \textbf{Camera Interface:} RGB camera for visual feedback
+    \item \textbf{File System Interface:} Storage management
+\end{itemize}
+
+\subsection{Data Flow}
+
+\begin{enumerate}
+    \item User launches application and selects inspection mode
+    \item System activates LiDAR scanner and AR session
+    \item User points device at target object
+    \item LiDAR captures point cloud data in real-time
+    \item Recognition engine identifies object type from templates
+    \item System retrieves corresponding CAD model from database
+    \item Comparison engine calculates dimensional deviations
+    \item Visualization engine generates color-coded heat map
+    \item AR overlay is rendered on physical object through device screen
+    \item User reviews results and optionally saves report
+\end{enumerate}
+
+\subsection{Technology Stack}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Component} & \textbf{Technology} \\ \midrule
+Development Language & Swift 5.0+ \\
+UI Framework & SwiftUI / UIKit \\
+AR Framework & ARKit 4.0+ \\
+3D Rendering & RealityKit / SceneKit \\
+Machine Learning & CoreML \\
+Computer Vision & Vision Framework \\
+Database & Core Data / SQLite \\
+File Formats & STL, OBJ, STEP, USD \\
+Version Control & Git \\
+Project Management & Jira / Trello \\ \bottomrule
+\end{tabular}
+\end{table}
+
+\newpage
+
+\section{Development Phases and Timeline}
+
+\subsection{Phase 1: Project Initiation and Planning}
+\textbf{Duration:} August 15 - September 30, 2025 (1.5 months)
+
+\subsubsection{Activities}
+\begin{enumerate}
+    \item \textbf{Team Formation and Kickoff}
+    \begin{itemize}
+        \item Assemble development team
+        \item Assign roles and responsibilities
+        \item Conduct kickoff meeting
+        \item Establish communication protocols
+    \end{itemize}
+
+    \item \textbf{Requirements Analysis}
+    \begin{itemize}
+        \item Detailed analysis of HWASHIN's requirements
+        \item Study sample parts and quality inspection processes
+        \item Define use cases and user stories
+        \item Establish success criteria and KPIs
+    \end{itemize}
+
+    \item \textbf{Technical Planning}
+    \begin{itemize}
+        \item Finalize technology stack
+        \item Design system architecture
+        \item Develop data models for templates and results
+        \item Create detailed development roadmap
+    \end{itemize}
+
+    \item \textbf{Environment Setup}
+    \begin{itemize}
+        \item Configure development workstations
+        \item Set up version control repository
+        \item Establish CI/CD pipeline
+        \item Prepare testing devices
+    \end{itemize}
+
+    \item \textbf{Risk Assessment}
+    \begin{itemize}
+        \item Identify technical risks
+        \item Develop mitigation strategies
+        \item Establish contingency plans
+    \end{itemize}
+\end{enumerate}
+
+\subsubsection{Deliverables}
+\begin{itemize}
+    \item \textbf{Work Plan} (Due: October 1, 2025)
+    \begin{itemize}
+        \item Project goals and objectives
+        \item Detailed task breakdown
+        \item Team member assignments
+        \item Development schedule with milestones
+        \item Risk management plan
+    \end{itemize}
+\end{itemize}
+
+\subsection{Phase 2: Core Technology Development}
+\textbf{Duration:} October 1 - December 31, 2025 (3 months)
+
+\subsubsection{Activities}
+\begin{enumerate}
+    \item \textbf{LiDAR Scanning Module (Weeks 1-4)}
+    \begin{itemize}
+        \item Implement ARKit session management
+        \item Develop point cloud capture functionality
+        \item Create mesh reconstruction algorithms
+        \item Implement object isolation and segmentation
+        \item Test scanning accuracy and performance
+    \end{itemize}
+
+    \item \textbf{Template Database System (Weeks 3-6)}
+    \begin{itemize}
+        \item Design database schema
+        \item Implement CAD file import (STL, OBJ formats)
+        \item Develop template preprocessing pipeline
+        \item Create database management interface
+        \item Test with HWASHIN template samples
+    \end{itemize}
+
+    \item \textbf{Object Recognition Engine (Weeks 5-10)}
+    \begin{itemize}
+        \item Implement feature extraction algorithms
+        \item Develop template matching system
+        \item Train machine learning models for classification
+        \item Implement pose estimation and alignment
+        \item Optimize recognition accuracy and speed
+    \end{itemize}
+
+    \item \textbf{Integration Testing}
+    \begin{itemize}
+        \item Test scanning-to-recognition pipeline
+        \item Validate database integration
+        \item Performance profiling and optimization
+    \end{itemize}
+\end{enumerate}
+
+\subsubsection{Milestones}
+\begin{itemize}
+    \item Working LiDAR scanning prototype (November 1)
+    \item Template database functional (November 15)
+    \item Object recognition achieving 80\% accuracy (December 31)
+\end{itemize}
+
+\subsection{Phase 3: Comparison and Visualization Development}
+\textbf{Duration:} January 1 - March 31, 2026 (3 months)
+
+\subsubsection{Activities}
+\begin{enumerate}
+    \item \textbf{Geometric Comparison Engine (Weeks 11-16)}
+    \begin{itemize}
+        \item Implement point-to-surface distance calculation
+        \item Develop deviation analysis algorithms
+        \item Create statistical analysis tools
+        \item Implement tolerance zone evaluation
+        \item Optimize computation performance
+    \end{itemize}
+
+    \item \textbf{Visualization System (Weeks 15-20)}
+    \begin{itemize}
+        \item Design color-coding scheme for deviations
+        \item Implement heat map generation
+        \item Develop AR overlay rendering
+        \item Create interactive inspection controls
+        \item Implement screenshot and report generation
+    \end{itemize}
+
+    \item \textbf{User Interface Development (Weeks 17-22)}
+    \begin{itemize}
+        \item Design intuitive UI/UX
+        \item Implement main AR view controller
+        \item Create database browser interface
+        \item Develop settings and configuration panels
+        \item Implement help and tutorial system
+    \end{itemize}
+\end{enumerate}
+
+\subsubsection{Deliverables}
+\begin{itemize}
+    \item \textbf{Progress Report} (Due: January 31, 2026)
+    \begin{itemize}
+        \item Summary of achievements to date
+        \item Technical challenges and solutions
+        \item Updated project schedule
+        \item Demo video of current functionality
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Milestones}
+\begin{itemize}
+    \item Comparison engine functional (February 15)
+    \item Heat map visualization working (March 1)
+    \item Complete UI implementation (March 31)
+\end{itemize}
+
+\subsection{Phase 4: Testing, Validation, and Refinement}
+\textbf{Duration:} April 1 - June 30, 2026 (3 months)
+
+\subsubsection{Activities}
+\begin{enumerate}
+    \item \textbf{System Integration Testing (Weeks 23-26)}
+    \begin{itemize}
+        \item End-to-end workflow testing
+        \item Integration of all modules
+        \item Performance optimization
+        \item Bug fixing and refinement
+    \end{itemize}
+
+    \item \textbf{Validation with HWASHIN Data (Weeks 27-30)}
+    \begin{itemize}
+        \item Import HWASHIN template databases
+        \item Test with actual part samples provided by HWASHIN
+        \item Validate recognition accuracy ($>90\%$ target)
+        \item Verify comparison accuracy
+        \item Validate visualization quality
+    \end{itemize}
+
+    \item \textbf{User Acceptance Testing (Weeks 29-32)}
+    \begin{itemize}
+        \item Conduct testing sessions with HWASHIN team
+        \item Gather user feedback
+        \item Refine UI/UX based on feedback
+        \item Optimize for real-world usage scenarios
+    \end{itemize}
+
+    \item \textbf{Documentation (Weeks 31-34)}
+    \begin{itemize}
+        \item Write technical documentation
+        \item Create user manual
+        \item Develop training materials
+        \item Prepare installation guide
+    \end{itemize}
+\end{enumerate}
+
+\subsubsection{Milestones}
+\begin{itemize}
+    \item System integration complete (May 1)
+    \item Validation testing passed (June 15)
+    \item All acceptance criteria met (June 30)
+\end{itemize}
+
+\subsection{Phase 5: Finalization and Deployment}
+\textbf{Duration:} July 1 - August 31, 2026 (2 months)
+
+\subsubsection{Activities}
+\begin{enumerate}
+    \item \textbf{Final Refinements (Weeks 35-37)}
+    \begin{itemize}
+        \item Address any remaining issues
+        \item Final performance optimization
+        \item Code cleanup and refactoring
+        \item Final testing cycle
+    \end{itemize}
+
+    \item \textbf{Deployment Preparation (Weeks 37-39)}
+    \begin{itemize}
+        \item Prepare deployment package
+        \item Create backup and recovery procedures
+        \item Finalize all documentation
+        \item Prepare training sessions
+    \end{itemize}
+
+    \item \textbf{Knowledge Transfer (Weeks 39-40)}
+    \begin{itemize}
+        \item Conduct training sessions for HWASHIN team
+        \item Provide hands-on demonstrations
+        \item Transfer source code and documentation
+        \item Establish support procedures
+    \end{itemize}
+
+    \item \textbf{Project Closure (Week 40)}
+    \begin{itemize}
+        \item Final project review
+        \item Lessons learned documentation
+        \item Handover to HWASHIN
+        \item Project completion certification
+    \end{itemize}
+\end{enumerate}
+
+\subsubsection{Deliverables}
+\begin{itemize}
+    \item \textbf{Final Report} (Due: July 31, 2026)
+    \begin{itemize}
+        \item Complete project achievements
+        \item Technical challenges and solutions
+        \item Performance metrics and validation results
+        \item Recommendations for future enhancements
+    \end{itemize}
+
+    \item \textbf{Mobile Application} (Due: August 31, 2026)
+    \begin{itemize}
+        \item Fully functional iOS application
+        \item Source code with comments
+        \item Technical documentation
+        \item User manual
+        \item Training materials
+        \item Installation and setup guide
+    \end{itemize}
+\end{itemize}
+
+\subsection{Timeline Summary}
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Phase} & \textbf{Duration} & \textbf{Key Milestone} \\ \midrule
+Phase 1: Planning & Aug-Sep 2025 & Work Plan Delivered \\
+Phase 2: Core Development & Oct-Dec 2025 & Recognition Engine Ready \\
+Phase 3: Visualization & Jan-Mar 2026 & Progress Report Delivered \\
+Phase 4: Testing & Apr-Jun 2026 & Validation Complete \\
+Phase 5: Finalization & Jul-Aug 2026 & Application Delivered \\ \bottomrule
+\end{tabular}
+\end{table}
+
+\newpage
+
+\section{Team Structure and Resources}
+
+\subsection{Project Organization}
+
+\subsubsection{HWASHIN Team}
+\begin{itemize}
+    \item \textbf{Representative:} Mr. Seo-jin Chung (President)
+    \item \textbf{Responsible Manager:} Team Leader Yeo In-Joo
+    \item \textbf{Technical Liaison:} Quality Assurance Team
+    \item \textbf{End Users:} Production and Inspection Staff
+\end{itemize}
+
+\subsubsection{IET Team}
+\begin{itemize}
+    \item \textbf{Legal Representative:} Assoc. Prof. Dang Tran Tho (Dean)
+    \item \textbf{Project Manager:} Professor Nguyen Duc Toan
+    \item \textbf{Development Team:} (To be finalized in Work Plan)
+    \begin{itemize}
+        \item Lead iOS Developer
+        \item AR/Computer Vision Specialist
+        \item 3D Graphics Developer
+        \item Machine Learning Engineer
+        \item UI/UX Designer
+        \item Quality Assurance Engineer
+        \item Technical Writer
+    \end{itemize}
+\end{itemize}
+
+\subsection{Roles and Responsibilities}
+
+\subsubsection{Project Manager}
+\begin{itemize}
+    \item Overall project coordination
+    \item Communication with HWASHIN
+    \item Resource allocation and management
+    \item Risk management and mitigation
+    \item Progress tracking and reporting
+\end{itemize}
+
+\subsubsection{Lead iOS Developer}
+\begin{itemize}
+    \item System architecture design
+    \item Core application development
+    \item Code quality and standards
+    \item Technical leadership
+    \item Integration oversight
+\end{itemize}
+
+\subsubsection{AR/Computer Vision Specialist}
+\begin{itemize}
+    \item LiDAR scanning implementation
+    \item Object recognition algorithms
+    \item ARKit integration
+    \item Performance optimization
+\end{itemize}
+
+\subsubsection{3D Graphics Developer}
+\begin{itemize}
+    \item Mesh processing and rendering
+    \item Heat map visualization
+    \item AR overlay implementation
+    \item Graphics optimization
+\end{itemize}
+
+\subsubsection{Machine Learning Engineer}
+\begin{itemize}
+    \item Object classification model development
+    \item Feature extraction algorithms
+    \item Model training and optimization
+    \item CoreML integration
+\end{itemize}
+
+\subsubsection{UI/UX Designer}
+\begin{itemize}
+    \item User interface design
+    \item User experience optimization
+    \item Usability testing
+    \item Design documentation
+\end{itemize}
+
+\subsubsection{Quality Assurance Engineer}
+\begin{itemize}
+    \item Test plan development
+    \item Functional and performance testing
+    \item Bug tracking and verification
+    \item Validation with HWASHIN data
+\end{itemize}
+
+\subsubsection{Technical Writer}
+\begin{itemize}
+    \item Technical documentation
+    \item User manual creation
+    \item Training material development
+    \item Report writing
+\end{itemize}
+
+\subsection{Resource Requirements}
+
+\subsubsection{Hardware}
+\begin{itemize}
+    \item iPad Pro devices with LiDAR (provided by HWASHIN)
+    \item Development workstations (Mac computers)
+    \item Testing devices (various iOS devices)
+    \item Sample parts from HWASHIN
+\end{itemize}
+
+\subsubsection{Software}
+\begin{itemize}
+    \item Xcode development environment
+    \item CAD software for template preparation
+    \item Version control system (Git)
+    \item Project management tools
+    \item Testing and debugging tools
+\end{itemize}
+
+\subsubsection{Facilities}
+\begin{itemize}
+    \item Development laboratory
+    \item Testing environment
+    \item Meeting and collaboration spaces
+    \item Secure storage for equipment
+\end{itemize}
+
+\newpage
+
+\section{Risk Management}
+
+\subsection{Technical Risks}
+
+\begin{longtable}{@{}p{4cm}p{3cm}p{4cm}p{3cm}@{}}
+\toprule
+\textbf{Risk} & \textbf{Probability} & \textbf{Impact} & \textbf{Mitigation} \\ \midrule
+\endfirsthead
+\toprule
+\textbf{Risk} & \textbf{Probability} & \textbf{Impact} & \textbf{Mitigation} \\ \midrule
+\endhead
+LiDAR accuracy insufficient & Medium & High & Early prototyping, alternative sensors \\
+Object recognition accuracy below 90\% & Medium & High & Advanced ML models, more training data \\
+Performance issues on older devices & Low & Medium & Optimization, minimum spec requirements \\
+CAD import format compatibility & Medium & Medium & Support multiple formats, conversion tools \\
+AR visualization lag & Medium & High & Graphics optimization, reduced polygon count \\
+Database scalability issues & Low & Medium & Efficient indexing, caching strategies \\ \bottomrule
+\end{longtable}
+
+\subsection{Project Management Risks}
+
+\begin{longtable}{@{}p{4cm}p{3cm}p{4cm}p{3cm}@{}}
+\toprule
+\textbf{Risk} & \textbf{Probability} & \textbf{Impact} & \textbf{Mitigation} \\ \midrule
+\endfirsthead
+\toprule
+\textbf{Risk} & \textbf{Probability} & \textbf{Impact} & \textbf{Mitigation} \\ \midrule
+\endhead
+Team member unavailability & Medium & High & Cross-training, backup resources \\
+Schedule delays & Medium & High & Buffer time, agile methodology \\
+Communication gaps with HWASHIN & Low & Medium & Regular meetings, clear protocols \\
+Scope creep & Medium & High & Strict change control, requirement freeze \\
+Budget overrun & Low & Medium & Careful resource planning, contingency \\ \bottomrule
+\end{longtable}
+
+\subsection{External Risks}
+
+\begin{longtable}{@{}p{4cm}p{3cm}p{4cm}p{3cm}@{}}
+\toprule
+\textbf{Risk} & \textbf{Probability} & \textbf{Impact} & \textbf{Mitigation} \\ \midrule
+\endfirsthead
+\toprule
+\textbf{Risk} & \textbf{Probability} & \textbf{Impact} & \textbf{Mitigation} \\ \midrule
+\endhead
+iOS version incompatibility & Low & High & Target stable iOS versions, testing \\
+Hardware availability delays & Low & Medium & Early procurement, alternative sources \\
+HWASHIN sample delay & Medium & High & Use surrogate samples, early coordination \\
+Force majeure events & Low & High & Remote work capability, flexible schedule \\ \bottomrule
+\end{longtable}
+
+\subsection{Risk Monitoring and Control}
+
+\begin{enumerate}
+    \item \textbf{Weekly Risk Reviews:} Assess risk status in team meetings
+    \item \textbf{Risk Register:} Maintain updated risk documentation
+    \item \textbf{Escalation Protocol:} Clear procedures for critical risks
+    \item \textbf{Contingency Planning:} Detailed plans for high-impact risks
+    \item \textbf{Communication:} Transparent reporting to HWASHIN
+\end{enumerate}
+
+\newpage
+
+\section{Quality Assurance and Testing}
+
+\subsection{Quality Objectives}
+\begin{itemize}
+    \item Zero critical bugs in production release
+    \item $>90\%$ object recognition accuracy
+    \item $<3$ seconds average recognition time
+    \item $>30$ FPS AR visualization performance
+    \item $\pm 0.5$ mm dimensional measurement accuracy
+    \item $>95\%$ user satisfaction rating
+\end{itemize}
+
+\subsection{Testing Strategy}
+
+\subsubsection{Unit Testing}
+\begin{itemize}
+    \item Test individual modules and functions
+    \item Achieve $>80\%$ code coverage
+    \item Automated unit tests with XCTest framework
+    \item Continuous integration testing
+\end{itemize}
+
+\subsubsection{Integration Testing}
+\begin{itemize}
+    \item Test interactions between modules
+    \item Validate data flow across system
+    \item Test API and database integration
+    \item Verify ARKit and LiDAR integration
+\end{itemize}
+
+\subsubsection{Functional Testing}
+\begin{itemize}
+    \item Verify all specified requirements
+    \item Test complete user workflows
+    \item Validate against acceptance criteria
+    \item Test with various part types and sizes
+\end{itemize}
+
+\subsubsection{Performance Testing}
+\begin{itemize}
+    \item Measure recognition and processing times
+    \item Test frame rate under various conditions
+    \item Evaluate memory usage and battery consumption
+    \item Stress testing with large databases
+\end{itemize}
+
+\subsubsection{Accuracy Validation}
+\begin{itemize}
+    \item Compare measurements with CMM data
+    \item Test recognition accuracy with diverse samples
+    \item Validate geometric comparison precision
+    \item Test under various lighting conditions
+\end{itemize}
+
+\subsubsection{Usability Testing}
+\begin{itemize}
+    \item User interface intuitiveness
+    \item Learning curve assessment
+    \item Workflow efficiency evaluation
+    \item Feedback collection from HWASHIN users
+\end{itemize}
+
+\subsubsection{Acceptance Testing}
+\begin{itemize}
+    \item Validation with HWASHIN template database
+    \item Testing with actual HWASHIN parts
+    \item Verification of all contractual requirements
+    \item Sign-off by HWASHIN team
+\end{itemize}
+
+\subsection{Test Environment}
+
+\begin{itemize}
+    \item Development testing: IET laboratory
+    \item Integration testing: Controlled environment with sample parts
+    \item Field testing: HWASHIN production facility (if applicable)
+    \item Acceptance testing: HWASHIN designated location
+\end{itemize}
+
+\subsection{Defect Management}
+
+\begin{enumerate}
+    \item \textbf{Bug Tracking System:} Use Jira or similar tool
+    \item \textbf{Severity Classification:}
+    \begin{itemize}
+        \item Critical: Application crash, data loss
+        \item High: Major functionality broken
+        \item Medium: Minor functionality issues
+        \item Low: Cosmetic issues
+    \end{itemize}
+    \item \textbf{Resolution Priorities:}
+    \begin{itemize}
+        \item Critical: Immediate fix required
+        \item High: Fix within 48 hours
+        \item Medium: Fix within 1 week
+        \item Low: Fix in next release
+    \end{itemize}
+    \item \textbf{Verification:} All fixes must be tested and verified
+    \item \textbf{Regression Testing:} Ensure fixes don't introduce new issues
+\end{enumerate}
+
+\subsection{Quality Metrics}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Metric} & \textbf{Target} & \textbf{Measurement Method} \\ \midrule
+Code Coverage & $>80\%$ & XCTest coverage report \\
+Recognition Accuracy & $>90\%$ & Test with 100+ samples \\
+Processing Time & $<3$ sec & Performance profiler \\
+Frame Rate & $>30$ FPS & ARKit metrics \\
+Bug Density & $<2$ per KLOC & Defect tracking system \\
+User Satisfaction & $>95\%$ & Post-deployment survey \\ \bottomrule
+\end{tabular}
+\end{table}
+
+\newpage
+
+\section{Budget Allocation and Financial Management}
+
+\subsection{Total Budget}
+Total project budget: \textbf{\$20,000 USD} (including VAT)
+
+\subsection{Budget Allocation}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{@{}lrr@{}}
+\toprule
+\textbf{Category} & \textbf{Amount (USD)} & \textbf{Percentage} \\ \midrule
+Personnel Costs & \$12,000 & 60\% \\
+Equipment \& Hardware & \$0* & 0\% \\
+Software \& Tools & \$1,500 & 7.5\% \\
+Research \& Development & \$3,000 & 15\% \\
+Testing \& Validation & \$1,500 & 7.5\% \\
+Documentation \& Training & \$1,000 & 5\% \\
+Contingency Reserve & \$1,000 & 5\% \\ \midrule
+\textbf{Total} & \textbf{\$20,000} & \textbf{100\%} \\ \bottomrule
+\end{tabular}
+\caption{*Hardware devices provided separately by HWASHIN}
+\end{table}
+
+\subsection{Personnel Cost Breakdown}
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+\textbf{Role} & \textbf{Person-Months} & \textbf{Rate} & \textbf{Total} \\ \midrule
+Project Manager & 12 & \$600 & \$7,200 \\
+Lead Developer & 10 & \$500 & \$5,000 \\
+AR Specialist & 8 & \$450 & \$3,600 \\
+Other Team Members & - & - & \$8,200 \\ \midrule
+\textbf{Subtotal} & & & \textbf{\$12,000} \\ \bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Software and Tools}
+
+\begin{itemize}
+    \item Development tools and IDEs: \$500
+    \item CAD software licenses: \$400
+    \item Project management tools: \$200
+    \item Testing and debugging tools: \$300
+    \item Other utilities: \$100
+    \item \textbf{Subtotal: \$1,500}
+\end{itemize}
+
+\subsection{Research and Development}
+
+\begin{itemize}
+    \item Algorithm development and optimization: \$1,500
+    \item Machine learning model training: \$800
+    \item Prototype development: \$400
+    \item Technical research and literature: \$300
+    \item \textbf{Subtotal: \$3,000}
+\end{itemize}
+
+\subsection{Testing and Validation}
+
+\begin{itemize}
+    \item Test sample preparation: \$500
+    \item Validation equipment and materials: \$400
+    \item User acceptance testing: \$400
+    \item Performance benchmarking: \$200
+    \item \textbf{Subtotal: \$1,500}
+\end{itemize}
+
+\subsection{Documentation and Training}
+
+\begin{itemize}
+    \item Technical documentation: \$400
+    \item User manual development: \$300
+    \item Training material creation: \$200
+    \item Video tutorials: \$100
+    \item \textbf{Subtotal: \$1,000}
+\end{itemize}
+
+\subsection{Payment Schedule}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{@{}llrr@{}}
+\toprule
+\textbf{Milestone} & \textbf{Date} & \textbf{Amount} & \textbf{Percentage} \\ \midrule
+Contract Signing & September 2025 & \$14,000 & 70\% \\
+Project Completion & September 2026 & \$6,000 & 30\% \\ \midrule
+\textbf{Total} & & \textbf{\$20,000} & \textbf{100\%} \\ \bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Financial Management}
+
+\begin{enumerate}
+    \item \textbf{Budget Tracking:} Monthly financial reports
+    \item \textbf{Cost Control:} Regular review of expenditures
+    \item \textbf{Variance Analysis:} Track deviations from budget
+    \item \textbf{Approval Process:} All major expenses require approval
+    \item \textbf{Contingency Use:} Reserve fund for unexpected costs
+    \item \textbf{Transparency:} Financial reports shared with HWASHIN
+\end{enumerate}
+
+\subsection{HWASHIN Contributions}
+
+In addition to the budget, HWASHIN provides:
+\begin{itemize}
+    \item iPad/iPhone devices with LiDAR (October 2025)
+    \item Template database samples (November 2025)
+    \item Physical part samples for testing (December 2025)
+    \item Technical consultation and feedback
+    \item Validation and acceptance testing facilities
+\end{itemize}
+
+\newpage
+
+\section{Success Criteria and Acceptance}
+
+\subsection{Technical Success Criteria}
+
+\begin{enumerate}
+    \item \textbf{Object Recognition}
+    \begin{itemize}
+        \item Recognition accuracy: $>90\%$ on test samples
+        \item Recognition time: $<3$ seconds per object
+        \item Robust to various lighting and viewing angles
+        \item Successful pose estimation and alignment
+    \end{itemize}
+
+    \item \textbf{Data Import}
+    \begin{itemize}
+        \item Successfully import 100\% of HWASHIN template databases
+        \item Support for standard CAD formats (STL, OBJ, STEP)
+        \item Proper handling of metadata and specifications
+        \item Efficient database retrieval ($<1$ second)
+    \end{itemize}
+
+    \item \textbf{Geometric Comparison}
+    \begin{itemize}
+        \item Compare 100\% of scanned objects with templates
+        \item Dimensional accuracy: $\pm 0.5$ mm
+        \item Complete coverage of part surfaces
+        \item Accurate deviation calculation
+    \end{itemize}
+
+    \item \textbf{Visualization}
+    \begin{itemize}
+        \item Clear, intuitive color-coded heat maps
+        \item Real-time AR overlay ($>30$ FPS)
+        \item Accurate alignment with physical parts
+        \item Interactive inspection capabilities
+    \end{itemize}
+
+    \item \textbf{Performance}
+    \begin{itemize}
+        \item Total inspection time: $<10$ seconds
+        \item Smooth user experience with no lag
+        \item Efficient battery consumption
+        \item Stable operation for continuous use
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Functional Success Criteria}
+
+\begin{enumerate}
+    \item All features specified in Annex I implemented
+    \item Complete end-to-end workflow functional
+    \item Intuitive user interface requiring minimal training
+    \item Robust error handling and user feedback
+    \item Data persistence and report generation
+    \item Help and documentation accessible within app
+\end{enumerate}
+
+\subsection{Quality Success Criteria}
+
+\begin{enumerate}
+    \item Zero critical or high-severity bugs in release
+    \item Code quality meets industry standards
+    \item Comprehensive technical documentation
+    \item Complete user manual and training materials
+    \item Successful validation with HWASHIN data
+    \item Positive feedback from HWASHIN users
+\end{enumerate}
+
+\subsection{Acceptance Process}
+
+\begin{enumerate}
+    \item \textbf{Deliverable Submission}
+    \begin{itemize}
+        \item IET submits completed application and documentation
+        \item Includes source code, user manual, and technical docs
+        \item Submission by deadline: August 31, 2026
+    \end{itemize}
+
+    \item \textbf{HWASHIN Review} (1 month)
+    \begin{itemize}
+        \item Functional testing against requirements
+        \item Performance and accuracy validation
+        \item User acceptance testing
+        \item Documentation review
+    \end{itemize}
+
+    \item \textbf{Feedback and Modifications} (if needed)
+    \begin{itemize}
+        \item HWASHIN provides detailed feedback
+        \item IET addresses issues within 1 month
+        \item Re-submission for final review
+    \end{itemize}
+
+    \item \textbf{Certification of Work Completion}
+    \begin{itemize}
+        \item HWASHIN issues formal certification
+        \item Confirms all requirements met
+        \item Triggers final payment release
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Verification Methods}
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Criterion} & \textbf{Verification Method} & \textbf{Pass Threshold} \\ \midrule
+Recognition Accuracy & Test with 100+ samples & $>90\%$ success rate \\
+Processing Speed & Timed measurements & $<3$ sec recognition \\
+Import Capability & Import all templates & 100\% success \\
+Comparison Coverage & Visual inspection & 100\% surface coverage \\
+Visualization Quality & User evaluation & $>4/5$ rating \\
+Performance & FPS monitoring & $>30$ FPS \\
+Accuracy & CMM comparison & $\pm 0.5$ mm \\
+Usability & User survey & $>4/5$ rating \\ \bottomrule
+\end{tabular}
+\end{table}
+
+\newpage
+
+\section{Communication and Reporting}
+
+\subsection{Communication Plan}
+
+\subsubsection{Regular Communications}
+\begin{itemize}
+    \item \textbf{Weekly Team Meetings:} Internal IET team coordination
+    \item \textbf{Bi-weekly Progress Updates:} Email updates to HWASHIN
+    \item \textbf{Monthly Video Conferences:} Detailed progress review with HWASHIN
+    \item \textbf{Quarterly In-Person Meetings:} Major milestone reviews (if feasible)
+\end{itemize}
+
+\subsubsection{Ad-Hoc Communications}
+\begin{itemize}
+    \item Technical questions and clarifications: Email or messaging
+    \item Urgent issues: Phone or video call
+    \item Demonstration requests: Scheduled video demos
+    \item Change requests: Formal written proposals
+\end{itemize}
+
+\subsection{Reporting Schedule}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{@{}llp{6cm}@{}}
+\toprule
+\textbf{Report Type} & \textbf{Frequency} & \textbf{Contents} \\ \midrule
+Progress Update & Bi-weekly & Brief status, achievements, next steps \\
+Monthly Report & Monthly & Detailed progress, issues, schedule status \\
+Work Plan & Once & Complete project plan and schedule \\
+Progress Report & Mid-project & Comprehensive progress and technical details \\
+Final Report & Once & Complete project summary and outcomes \\ \bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Formal Deliverable Reports}
+
+\subsubsection{Work Plan (October 1, 2025)}
+\begin{itemize}
+    \item Project goals and objectives
+    \item Detailed task breakdown with schedule
+    \item Team composition and roles
+    \item Resource allocation
+    \item Risk management plan
+    \item Quality assurance plan
+\end{itemize}
+
+\subsubsection{Progress Report (January 31, 2026)}
+\begin{itemize}
+    \item Achievements to date
+    \item Technical milestones completed
+    \item Challenges encountered and solutions
+    \item Updated project schedule
+    \item Demo video of current functionality
+    \item Risks and mitigation status
+\end{itemize}
+
+\subsubsection{Final Report (July 31, 2026)}
+\begin{itemize}
+    \item Complete project summary
+    \item Technical achievements and innovations
+    \item Challenges and problem-solving approach
+    \item Performance metrics and validation results
+    \item Lessons learned
+    \item Recommendations for future enhancements
+    \item Acknowledgments
+\end{itemize}
+
+\subsection{Documentation Deliverables}
+
+\begin{enumerate}
+    \item \textbf{Technical Documentation}
+    \begin{itemize}
+        \item System architecture description
+        \item Module specifications
+        \item API documentation
+        \item Database schema
+        \item Algorithm descriptions
+        \item Code comments and README files
+    \end{itemize}
+
+    \item \textbf{User Manual}
+    \begin{itemize}
+        \item Installation and setup guide
+        \item User interface overview
+        \item Step-by-step workflows
+        \item Feature descriptions
+        \item Troubleshooting guide
+        \item FAQ section
+    \end{itemize}
+
+    \item \textbf{Training Materials}
+    \begin{itemize}
+        \item Quick start guide
+        \item Video tutorials
+        \item Training presentation slides
+        \item Practice exercises
+        \item Best practices guide
+    \end{itemize}
+
+    \item \textbf{Administrative Documents}
+    \begin{itemize}
+        \item Meeting minutes
+        \item Change request logs
+        \item Test reports
+        \item Acceptance certificates
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Issue Escalation}
+
+\begin{enumerate}
+    \item \textbf{Level 1:} Team member identifies issue
+    \item \textbf{Level 2:} Project manager attempts resolution
+    \item \textbf{Level 3:} Dean and HWASHIN manager involved
+    \item \textbf{Level 4:} Executive leadership from both parties
+\end{enumerate}
+
+\textbf{Escalation Triggers:}
+\begin{itemize}
+    \item Critical technical blocker
+    \item Major schedule delay risk
+    \item Scope change request
+    \item Budget overrun threat
+    \item Force majeure event
+\end{itemize}
+
+\newpage
+
+\section{Intellectual Property and Confidentiality}
+
+\subsection{Intellectual Property Rights}
+
+As stipulated in Article 4 of the Implementing Agreement:
+
+\begin{enumerate}
+    \item \textbf{Ownership:} All deliverables and results are under HWASHIN's sole ownership and intellectual property rights
+
+    \item \textbf{Use Rights:} Only HWASHIN has the right to use deliverables for further development
+
+    \item \textbf{Patent Rights:} If HWASHIN pursues patent applications:
+    \begin{itemize}
+        \item IET's project manager must be notified in advance
+        \item HWASHIN covers all patent-related expenses
+    \end{itemize}
+
+    \item \textbf{Assignment Restrictions:} Assignment to third parties requires HWASHIN's consent
+\end{enumerate}
+
+\subsection{Confidentiality Obligations}
+
+\subsubsection{Confidential Information}
+Includes but not limited to:
+\begin{itemize}
+    \item Agreement terms and conditions
+    \item Technical specifications and designs
+    \item CAD models and template databases
+    \item Quality data and inspection results
+    \item Source code and algorithms
+    \item Business processes and strategies
+    \item Financial information
+\end{itemize}
+
+\subsubsection{Handling Procedures}
+\begin{enumerate}
+    \item Limit access to authorized team members only
+    \item Use secure storage and transmission methods
+    \item Mark documents appropriately as confidential
+    \item Implement non-disclosure agreements with all staff
+    \item Secure disposal of confidential materials when no longer needed
+\end{enumerate}
+
+\subsubsection{Academic Publications}
+\begin{itemize}
+    \item Academic papers and conference presentations require HWASHIN's prior consent
+    \item Approval process to be established early in project
+    \item Appropriate acknowledgment of both parties in publications
+\end{itemize}
+
+\subsection{Data Security}
+
+\begin{enumerate}
+    \item \textbf{Access Control:} Role-based access to repositories and systems
+    \item \textbf{Encryption:} Encrypt sensitive data in storage and transmission
+    \item \textbf{Backups:} Regular encrypted backups of all project data
+    \item \textbf{Version Control:} Secure Git repository with access logs
+    \item \textbf{Device Security:} Password protection and encryption on all devices
+    \item \textbf{Network Security:} VPN and firewall protection
+\end{enumerate}
+
+\newpage
+
+\section{Future Enhancements and Scalability}
+
+\subsection{Potential Future Features}
+
+\subsubsection{Short-term Enhancements (Next 6-12 months)}
+\begin{enumerate}
+    \item \textbf{Multi-part Inspection:} Scan and compare multiple parts simultaneously
+    \item \textbf{Batch Processing:} Queue multiple inspections for efficient workflows
+    \item \textbf{Historical Tracking:} Track part quality trends over time
+    \item \textbf{Cloud Sync:} Synchronize data across multiple devices
+    \item \textbf{Advanced Reporting:} Statistical analysis and custom report generation
+\end{enumerate}
+
+\subsubsection{Medium-term Enhancements (1-2 years)}
+\begin{enumerate}
+    \item \textbf{AI-Powered Defect Classification:} Automatic categorization of defect types
+    \item \textbf{Predictive Quality:} Machine learning to predict quality issues
+    \item \textbf{Integration with ERP/MES:} Connect with enterprise systems
+    \item \textbf{Multi-language Support:} Localization for different regions
+    \item \textbf{Collaborative Features:} Real-time sharing and annotations
+\end{enumerate}
+
+\subsubsection{Long-term Vision (2+ years)}
+\begin{enumerate}
+    \item \textbf{Industry 4.0 Integration:} Full smart factory integration
+    \item \textbf{Digital Twin:} Real-time synchronization with digital models
+    \item \textbf{Automated Corrective Actions:} AI-driven process adjustments
+    \item \textbf{Cross-platform Support:} Android and web-based versions
+    \item \textbf{Advanced AR:} Holographic displays and wearable AR devices
+\end{enumerate}
+
+\subsection{Scalability Considerations}
+
+\subsubsection{Technical Scalability}
+\begin{itemize}
+    \item \textbf{Database:} Design for large template libraries (1000+ parts)
+    \item \textbf{Performance:} Optimize algorithms for complex geometries
+    \item \textbf{Modularity:} Component-based architecture for easy extensions
+    \item \textbf{API Design:} RESTful APIs for future integrations
+\end{itemize}
+
+\subsubsection{Business Scalability}
+\begin{itemize}
+    \item \textbf{Multi-tenant:} Support for multiple companies/facilities
+    \item \textbf{Licensing:} Flexible licensing models for different use cases
+    \item \textbf{Deployment:} Easy distribution through App Store or MDM
+    \item \textbf{Support:} Scalable support and maintenance structure
+\end{itemize}
+
+\subsection{Technology Roadmap}
+
+\begin{enumerate}
+    \item \textbf{2026-2027:} Refinement and optimization based on field use
+    \item \textbf{2027-2028:} Advanced AI features and cloud integration
+    \item \textbf{2028-2029:} Enterprise-wide deployment capabilities
+    \item \textbf{2029+:} Next-generation AR hardware and Industry 4.0 integration
+\end{enumerate}
+
+\newpage
+
+\section{Sustainability and Maintenance}
+
+\subsection{Post-Delivery Support}
+
+\subsubsection{Warranty Period}
+\begin{itemize}
+    \item Duration: 3 months after delivery (September - November 2026)
+    \item Coverage: Bug fixes and critical issues
+    \item Response time: Within 48 hours for critical issues
+    \item Updates: Patches and minor updates as needed
+\end{itemize}
+
+\subsubsection{Extended Support (Optional)}
+\begin{itemize}
+    \item Extended support contracts available beyond warranty
+    \item Includes: Updates, bug fixes, technical consultation
+    \item Terms: To be negotiated separately if desired
+\end{itemize}
+
+\subsection{Maintenance Guidelines}
+
+\subsubsection{For HWASHIN}
+\begin{enumerate}
+    \item \textbf{Regular Updates:} Install iOS and app updates promptly
+    \item \textbf{Device Maintenance:} Keep devices clean and calibrated
+    \item \textbf{Backup:} Regular backups of template databases
+    \item \textbf{User Training:} Ongoing training for new users
+    \item \textbf{Feedback Collection:} Gather user feedback for improvements
+\end{enumerate}
+
+\subsubsection{For Future Developers}
+\begin{enumerate}
+    \item \textbf{Code Quality:} Maintain coding standards and documentation
+    \item \textbf{Testing:} Comprehensive tests before any updates
+    \item \textbf{Version Control:} Proper Git workflow and branching
+    \item \textbf{Compatibility:} Test with new iOS versions
+    \item \textbf{Performance Monitoring:} Track app performance metrics
+\end{enumerate}
+
+\subsection{Knowledge Transfer}
+
+\begin{enumerate}
+    \item \textbf{Code Handover:} Complete source code with documentation
+    \item \textbf{Training Sessions:} Hands-on training for HWASHIN technical staff
+    \item \textbf{Documentation:} Comprehensive technical and user documentation
+    \item \textbf{Support Channel:} Establish communication channel for questions
+    \item \textbf{Best Practices:} Document operational best practices
+\end{enumerate}
+
+\newpage
+
+\section{Conclusion}
+
+\subsection{Project Summary}
+
+This detailed implementation plan outlines a comprehensive approach to developing an innovative Augmented Reality system for quality inspection in manufacturing. The project leverages cutting-edge LiDAR technology on iOS devices to provide real-time, intuitive visualization of dimensional deviations in formed parts.
+
+\subsection{Key Success Factors}
+
+\begin{enumerate}
+    \item \textbf{Strong Partnership:} Collaboration between HWASHIN and IET
+    \item \textbf{Clear Requirements:} Well-defined objectives and acceptance criteria
+    \item \textbf{Experienced Team:} Skilled developers and specialists
+    \item \textbf{Agile Methodology:} Flexible approach with regular feedback
+    \item \textbf{Quality Focus:} Rigorous testing and validation
+    \item \textbf{Risk Management:} Proactive identification and mitigation
+    \item \textbf{Effective Communication:} Regular updates and transparency
+\end{enumerate}
+
+\subsection{Expected Outcomes}
+
+\subsubsection{Technical Outcomes}
+\begin{itemize}
+    \item Fully functional mobile AR application
+    \item High-accuracy object recognition system
+    \item Intuitive quality visualization interface
+    \item Robust and performant implementation
+    \item Comprehensive documentation
+\end{itemize}
+
+\subsubsection{Business Outcomes}
+\begin{itemize}
+    \item Improved quality inspection efficiency
+    \item Reduced inspection time and costs
+    \item Enhanced quality control capabilities
+    \item Foundation for future AR applications
+    \item Competitive advantage in manufacturing
+\end{itemize}
+
+\subsubsection{Research Outcomes}
+\begin{itemize}
+    \item Advanced AR application development expertise
+    \item Novel approaches to manufacturing quality inspection
+    \item Potential for academic publications
+    \item Foundation for future research projects
+\end{itemize}
+
+\subsection{Commitment}
+
+Both HWASHIN and IET are committed to the successful execution of this project. Through dedicated effort, technical excellence, and close collaboration, we will deliver an innovative solution that advances the state of quality inspection technology in manufacturing.
+
+\vspace{1cm}
+
+\begin{center}
+\textit{This detailed plan serves as a roadmap for the successful development and delivery of the AR Quality Information Display System. It will be refined and updated as the project progresses to reflect actual progress and any necessary adjustments.}
+\end{center}
+
+\newpage
+
+\appendix
+
+\section{Appendix A: Glossary of Terms}
+
+\begin{description}
+    \item[AR (Augmented Reality):] Technology that overlays digital information onto the real world
+    \item[LiDAR (Light Detection and Ranging):] Laser-based 3D scanning technology
+    \item[CAD (Computer-Aided Design):] Software for creating digital 3D models
+    \item[Point Cloud:] Collection of 3D points representing a scanned surface
+    \item[Mesh:] 3D surface model composed of vertices, edges, and faces
+    \item[Heat Map:] Color-coded visualization showing variations in values
+    \item[Template Database:] Collection of reference CAD models and specifications
+    \item[Dimensional Deviation:] Difference between actual and design dimensions
+    \item[CMM (Coordinate Measuring Machine):] Precision measurement device
+    \item[ARKit:] Apple's framework for AR development on iOS
+    \item[CoreML:] Apple's machine learning framework
+    \item[FPS (Frames Per Second):] Measurement of rendering performance
+\end{description}
+
+\section{Appendix B: Reference Documents}
+
+\begin{enumerate}
+    \item Implementing Agreement dated August 15, 2025
+    \item Annex I: Deliverables and Assessment Criteria
+    \item ARKit Documentation (Apple Developer)
+    \item LiDAR Scanner Technical Specifications
+    \item Quality Inspection Standards (ISO 9001, etc.)
+    \item Swift Programming Language Guide
+    \item iOS Human Interface Guidelines
+\end{enumerate}
+
+\section{Appendix C: Contact Information}
+
+\subsection{HWASHIN Co., Ltd}
+\begin{itemize}
+    \item Address: 14, Eonhagongdan 1-gil, Yeongcheon-si, Gyeongsangbuk-do, 38828, Korea
+    \item Tel: +82-54-330-5430
+    \item Fax: +82-54-335-0176
+    \item Representative: Mr. Seo-jin Chung (President)
+    \item Responsible Manager: Team Leader Yeo In-Joo
+\end{itemize}
+
+\subsection{Institute of Energy Technology (IET)}
+\begin{itemize}
+    \item Address: No. 1, Dai Co Viet Street, Bach Mai, Ha Noi, Vietnam
+    \item Tel: +84 24 38 68 2625
+    \item Legal Representative: Assoc. Prof. Dang Tran Tho (Dean)
+    \item Project Manager: Professor Nguyen Duc Toan
+\end{itemize}
+
+\end{document}
